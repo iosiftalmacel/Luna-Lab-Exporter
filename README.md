@@ -28,4 +28,4 @@ Very basic support for the following features:
 - JSONObject
 - HttpFileServer
 
-<sup><sub>The `Sample` scene was not created with performance in mind :P</sub></sup>
+<sup>Please take into consideration that the `Sample` scene was not created with performance in mind :P</sup>
