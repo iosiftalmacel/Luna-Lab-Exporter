@@ -15,3 +15,6 @@ MonoBehaviour:
   window:
     width: 500
     height: 600
+  export:
+    startServer: 1
+    serverPort: 8889

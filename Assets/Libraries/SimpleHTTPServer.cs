@@ -10,11 +10,11 @@ public class HttpFileServer : IDisposable
     private const int bufferSize = 1024 * 512; //512KB
     private readonly HttpListener http;
 
-    public HttpFileServer(string rootPath)
+    public HttpFileServer(string rootPath, int port)
     {
         this.rootPath = rootPath;
         http = new HttpListener();
-        http.Prefixes.Add("http://localhost:8889/");
+        http.Prefixes.Add($"http://localhost:{port}/");
         http.Start();
         http.BeginGetContext(requestWait, null);
     }

@@ -11,19 +11,32 @@ namespace LunaLab
         [System.Serializable]
         public class Window
         {
-            public int width;
-            public int height;
+            public int width = 500;
+            public int height = 600;
         }
+
+        [System.Serializable]
+        public class Export
+        {
+            public bool startServer = true;
+            public int serverPort = 8889;
+        }
+
 
         [SerializeField]
         public Window window;
+        [SerializeField]
+        public Export export;
+
         private static string templatePath;
+        private static LunaExporter instance;
 
 
         private void OnEnable()
         {
             string configPath = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
             templatePath = Path.GetDirectoryName(configPath) + "/Template";
+            instance = this;
         }
 
         [MenuItem("LunaLab/Export To HTML5")]
@@ -46,8 +59,11 @@ namespace LunaLab
             LunaScene lunaScene = activeScene.ToLunaScene();
             scenesJson.Add(lunaScene.ToJsonObject());
 
-            windowJson.AddField("width", 500);
-            windowJson.AddField("height", 600);
+            Window window = instance ? instance.window : new Window();
+            Export export = instance ? instance.export : new Export();
+
+            windowJson.AddField("width", window.width);
+            windowJson.AddField("height", window.height);
 
             gameConfig.AddField("scenes", scenesJson);
             gameConfig.AddField("window", windowJson);
@@ -58,9 +74,11 @@ namespace LunaLab
 
             EditorUtility.RevealInFinder(destination);
 
-
-            HttpFileServer myServer = new HttpFileServer(destination);
-            Application.OpenURL("http://localhost:8889/index.html");
+            if (export.startServer)
+            {
+                HttpFileServer myServer = new HttpFileServer(destination, export.serverPort);
+                Application.OpenURL($"http://localhost:{export.serverPort}/index.html");
+            }
         }
     }
 
