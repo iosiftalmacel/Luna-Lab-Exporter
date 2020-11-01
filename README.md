@@ -27,3 +27,5 @@ Very basic support for the following features:
 - [three.js](https://threejs.org/)
 - JSONObject
 - HttpFileServer
+
+<sup><sub>The `Sample` scene was not created with performance in mind :P</sub></sup>
