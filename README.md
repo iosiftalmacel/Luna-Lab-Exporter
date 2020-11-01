@@ -9,7 +9,9 @@ This tiny library was developed using `Unity 2020.1`.
 3. Choose a location and a name and the scene will be exported.
 4. Because of `CORS` problems the library will attempt to start a small HTTP Server
 5. In case the server doesn't work, an easy alternative is to use the [LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension for `vscode`.
-<sup>Please take into consideration that the `Sample` scene was not created with performance in mind :P</sup>
+
+
+`<sup>Please take into consideration that the Sample scene was not created with performance in mind.</sup>`
 
 ## Supported Features
 
